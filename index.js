@@ -1,10 +1,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const Employee = require('./lib/employee')
 const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
-const teamMembers = []
-const htmlTemplate = ''
+const teamMembers = [];
+let htmlTemplate = ''
 console.log('Build your team!')
 
 
@@ -47,6 +48,16 @@ function createManager(){
   }
 ])
 .then((response) => {
+  let newArr = []
+  const newEmployee = new Manager(response.name, response.id, response.email, response.office)
+  newArr.push(newEmployee.getName())
+  newArr.push(newEmployee.getRole())
+  newArr.push(newEmployee.getId())
+  newArr.push(newEmployee.getEmail())
+  newArr.push(newEmployee.officeNumber)
+  teamMembers.push(newArr)
+  htmlTemplate = newEmployee.getHtml()
+
   if (response.typeEmployee == "Engineer"){
     createEngineer()
   }
@@ -56,11 +67,8 @@ function createManager(){
   else if(response.typeEmployee == "I don't want to add any more team members"){
     generateHtml()
   }
-  const newEmployee = new Manager(response.name, response.id, response.email, response.office)
-  teamMembers.push(newEmployee)
 })
 }
-
 
 function createIntern(){
   inquirer.prompt([
@@ -92,6 +100,17 @@ function createIntern(){
   }
 ])
 .then((response) => {
+  let newArr = []
+  const newEmployee = new Intern(response.name, response.id, response.email, response.school)
+  newArr.push(newEmployee.getName())
+  newArr.push(newEmployee.getRole())
+  newArr.push(newEmployee.getId())
+  newArr.push(newEmployee.getEmail())
+  newArr.push(newEmployee.getSchool())
+  teamMembers.push(newArr)
+  htmlTemplate = newEmployee.getHtml()
+
+
   if (response.typeEmployee == "Engineer"){
     createEngineer()
   }
@@ -136,6 +155,17 @@ function createEngineer(){
   }
 ])
 .then((response) => {
+  let newArr = []
+  const newEmployee = new Engineer(response.name, response.id, response.email, response.github)
+  newArr.push(newEmployee.getName())
+  newArr.push(newEmployee.getRole())
+  newArr.push(newEmployee.getId())
+  newArr.push(newEmployee.getEmail())
+  newArr.push(newEmployee.getGithub())
+  teamMembers.push(newArr)
+  htmlTemplate = newEmployee.getHtml()
+
+
   if (response.typeEmployee == "Engineer"){
     createEngineer()
   }
