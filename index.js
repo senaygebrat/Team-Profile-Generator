@@ -12,7 +12,7 @@ console.log('Build your team!')
 function generateHtml(){
   let data = htmlTemplate + `</body>
   </html>`
-fs.writeFile('./index.html', data, function(err){
+fs.writeFile('./dist/index.html', data, function(err){
   if(err ? console.log(err) : console.log('Success'));
 })
 }
@@ -43,7 +43,7 @@ function createManager(){
     type: 'list',
     name: 'typeEmployee',
     message: "Which type of team member would you like to add?",
-    choices: ["Engineer", "Intern", "I don't want to add any more team members"]
+    choices: ["Engineer", "Intern", "That's it, build my team!"]
   }
 ])
 .then((response) => {
@@ -63,7 +63,7 @@ function createManager(){
   else if(response.typeEmployee == "Intern"){
     createIntern()
   }
-  else if(response.typeEmployee == "I don't want to add any more team members"){
+  else if(response.typeEmployee == "That's it, build my team!"){
     generateHtml()
   }
 })
@@ -119,7 +119,6 @@ function createIntern(){
   else if(response.typeEmployee == "That's it, build my team!"){
     generateHtml()
   }
-  
 })
 }
 
@@ -175,6 +174,5 @@ function createEngineer(){
   }
 })
 }
-
 
 createManager();
