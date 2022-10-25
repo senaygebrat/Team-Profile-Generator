@@ -40,7 +40,7 @@ function createManager(){
     message: "What is the team manager's office number?"
   },
   {
-    type: 'checkbox',
+    type: 'list',
     name: 'typeEmployee',
     message: "Which type of team member would you like to add?",
     choices: ["Engineer", "Intern", "I don't want to add any more team members"]
@@ -92,10 +92,10 @@ function createIntern(){
     message: "What is your intern's school?"
   },
   {
-    type: 'checkbox',
+    type: 'list',
     name: 'typeEmployee',
     message: "Which type of team member would you like to add?",
-    choices: ["Engineer", "Intern", "I don't want to add any more team members"]
+    choices: ["Engineer", "Intern", "That's it, build my team!"]
   }
 ])
 .then((response) => {
@@ -116,13 +116,12 @@ function createIntern(){
   else if(response.typeEmployee == "Intern"){
     createIntern()
   }
-  else if(response.typeEmployee == "I don't want to add any more team members"){
+  else if(response.typeEmployee == "That's it, build my team!"){
     generateHtml()
   }
   
 })
 }
-
 
 function createEngineer(){
   inquirer.prompt([
@@ -147,10 +146,10 @@ function createEngineer(){
     message: "What is the engineer's Github username?"
   },
   {
-    type: 'checkbox',
+    type: 'list',
     name: 'typeEmployee',
     message: "Which type of team member would you like to add?",
-    choices: ["Engineer", "Intern", "I don't want to add any more team members"]
+    choices: ["Engineer", "Intern", "That's it, build my team!"]
   }
 ])
 .then((response) => {
@@ -171,7 +170,7 @@ function createEngineer(){
   else if(response.typeEmployee == "Intern"){
     createIntern()
   }
-  else if(response.typeEmployee == "I don't want to add any more team members"){
+  else if(response.typeEmployee == "That's it, build my team!"){
     generateHtml()
   }
 })
