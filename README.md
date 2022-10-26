@@ -1,8 +1,9 @@
 # Team-Profile-Generator
-[Video]()
+[Walkthrough Video](https://youtu.be/POsb7paPckI)
 
 ## About Team-Profile-Generator
 Generator that allows the user to create employee cards based on their roles, and outputing said information.
+![Page Preview](./assets/images/Team%20Member%20Sheet.gif)
 
 
 ## Code Snippet
