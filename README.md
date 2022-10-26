@@ -9,7 +9,7 @@ Generator that allows the user to create employee cards based on their roles, an
 ## Code Snippet
 Below is a preview of some of the code that takes the user input, pushes it into an array, and adds it for the generated HTML.
 
-```
+```JavaScript
 .then((response) => {  
   let newArr = []
   const newEmployee = new Manager(response.name, response.id, response.email, response.office)  
@@ -21,6 +21,19 @@ Below is a preview of some of the code that takes the user input, pushes it into
   teamMembers.push(newArr)
   htmlTemplate += newEmployee.getHtml()
 ```
+
+Function to generate the HTML
+```JavaScript
+function generateHtml(){
+  let data = htmlTemplate + `</body>
+  </html>`
+fs.writeFile('./dist/index.html', data, function(err){
+  if(err ? console.log(err) : console.log('Success'));
+})
+}
+```
+
+
 
 ## Technologies Used
 HTML, CSS, Bootstrap, Fonts Awesome, JavaScript, Node
