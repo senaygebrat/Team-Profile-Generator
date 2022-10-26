@@ -8,7 +8,7 @@ const teamMembers = [];
 let htmlTemplate = '';
 console.log('Build your team!')
 
-
+//function that generates the HTML, combined with the final few lines of html to finish the build
 function generateHtml(){
   let data = htmlTemplate + `</body>
   </html>`
@@ -16,7 +16,7 @@ fs.writeFile('./dist/index.html', data, function(err){
   if(err ? console.log(err) : console.log('Success'));
 })
 }
-
+//function to create manager, with few questions for end user to input answers
 function createManager(){
   inquirer.prompt([
   {
@@ -46,17 +46,18 @@ function createManager(){
     choices: ["Engineer", "Intern", "That's it, build my team!"]
   }
 ])
-.then((response) => {
+.then((response) => {  //based on prompt responses, will run the then method
   let newArr = []
-  const newEmployee = new Manager(response.name, response.id, response.email, response.office)
+  const newEmployee = new Manager(response.name, response.id, response.email, response.office)  
   newArr.push(newEmployee.name)
   newArr.push(newEmployee.getRole())
-  newArr.push(newEmployee.id)
+  newArr.push(newEmployee.id)      //lines 52-57 pushing the values into each new employee, to our new array in 57
   newArr.push(newEmployee.email)
   newArr.push(newEmployee.officeNumber)
   teamMembers.push(newArr)
   htmlTemplate += newEmployee.getHtml()
 
+  //if statements below, based on user input will either create new employee or generate html
   if (response.typeEmployee == "Engineer"){
     createEngineer()
   }
@@ -68,7 +69,7 @@ function createManager(){
   }
 })
 }
-
+//function to create intern, with few questions for end user to input answers
 function createIntern(){
   inquirer.prompt([
   {
@@ -109,7 +110,7 @@ function createIntern(){
   teamMembers.push(newArr)
   htmlTemplate += newEmployee.getHtml()
 
-
+  //if statements below, based on user input will either create new employee or generate html
   if (response.typeEmployee == "Engineer"){
     createEngineer()
   }
@@ -121,7 +122,7 @@ function createIntern(){
   }
 })
 }
-
+//function to create engineer, with few questions for end user to input answers
 function createEngineer(){
   inquirer.prompt([
   {
@@ -162,7 +163,7 @@ function createEngineer(){
   teamMembers.push(newArr)
   htmlTemplate += newEmployee.getHtml()
 
-
+  //if statements below, based on user input will either create new employee or generate html
   if (response.typeEmployee == "Engineer"){
     createEngineer()
   }
